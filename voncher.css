@@ -2,3 +2,14 @@
     display: flex;
     justify-content: space-around;
 }
+
+.day-view {
+    display: flex;
+    justify-content: space-between;
+    width: 100%; /* Ensure the buttons take the full width of the container */
+}
+
+.day-view div {
+    flex: 1; /* Ensure equal spacing between the buttons */
+    text-align: center; /* Center align the buttons */
+}

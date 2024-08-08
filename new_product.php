@@ -144,8 +144,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                 <input type="text" class="form-control bg-white text-dark" id="item_count" name="item_count" value="1">
             </div>
             <div class="col-md-6">
-                <label for="date" class="form-label text-white">Date</label>
-                <input type="date" class="form-control bg-white text-dark" id="date" name="date">
+                <label for="date" class="form-label text-white"></label>
+                <input type="hidden" class="form-control bg-white text-dark" id="date" name="date">
             </div>
             <script>
             document.addEventListener("DOMContentLoaded", function(event) {

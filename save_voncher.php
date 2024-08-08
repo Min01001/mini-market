@@ -9,9 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $image = $conn->real_escape_string($item['image']);
         $product = $conn->real_escape_string($item['product']);
         $quantity = (int)$item['quantity'];
-        $price = (float)$item['price'];
+        $price = (int)$item['price'];
+        $total = $quantity * $price;
 
-        $sql = "INSERT INTO sell (image, product, quantity, price, date) VALUES ('$image', '$product', '$quantity', '$price', '$date')";
+        $sql = "INSERT INTO sell (image, product, quantity, price, total, date) VALUES ('$image', '$product', '$quantity', '$price', '$total' ,'$date')";
         
         if ($conn->query($sql) === TRUE) {
             echo "<script>window.location.href='add_sell.php'</script>";

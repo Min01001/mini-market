@@ -71,13 +71,13 @@
                         </a>
                         <ul id="auths" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link"><i class="fas fa-dot-circle me-2"></i>ရက်ချုပ်</a>
+                                <a href="day.php" class="sidebar-link"><i class="fas fa-dot-circle me-2"></i>ရက်ချုပ်</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link"><i class="fas fa-dot-circle me-2"></i>လချုပ်</a>
+                                <a href="month.php" class="sidebar-link"><i class="fas fa-dot-circle me-2"></i>လချုပ်</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link"><i class="fas fa-dot-circle me-2"></i>နှစ်ချုပ်</a>
+                                <a href="year.php" class="sidebar-link"><i class="fas fa-dot-circle me-2"></i>နှစ်ချုပ်</a>
                             </li>
                         </ul>
                     </li>
