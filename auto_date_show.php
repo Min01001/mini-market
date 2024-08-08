@@ -32,7 +32,7 @@ if ($result->num_rows > 0) {
         echo '</tr>';
     }
 } else {
-    echo '<tr><td colspan="5">No products found.</td></tr>';
+    echo '<tr><td colspan="5" class="text-white">No date found.</td></tr>';
 }
 
 $conn->close();
