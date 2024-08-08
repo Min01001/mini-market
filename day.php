@@ -65,7 +65,7 @@ if ($result->num_rows > 0) {
         echo '<td class="text-white">' . $row['product'] . '</td>';
         echo '<td class="text-white">' . $row['total_quantity'] . '</td>';
         echo '<td class="text-white">' . $row['total_price'] . '</td>';
-        echo '<td class="text-white">' . $row['day'] . '</td>';
+        echo '<td class="text-danger">' . $row['day'] . '</td>';
         //echo '<td><img src="' . $row['image'] . '" alt="Product Image" style="width: 50px;"></td>';
         echo "</td>";
         echo '</tr>';
