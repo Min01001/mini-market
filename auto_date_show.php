@@ -28,7 +28,7 @@ if ($result->num_rows > 0) {
         echo '<td class="text-white">' . htmlspecialchars($row['total_quantity']) . '</td>';
         echo '<td class="text-white">' . htmlspecialchars($row['total_price']) . '</td>';
         echo '<td class="text-white">' . htmlspecialchars($row['day']) . '</td>';
-        echo '<td><img src="' . htmlspecialchars($row['image']) . '" alt="Product Image" style="width: 50px;"></td>';
+        //echo '<td><img src="' . htmlspecialchars($row['image']) . '" alt="Product Image" style="width: 50px;"></td>';
         echo '</tr>';
     }
 } else {

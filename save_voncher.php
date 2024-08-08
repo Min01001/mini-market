@@ -6,13 +6,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $date = date('Y-m-d');
 
     foreach ($voucherData as $item) {
-        $image = $conn->real_escape_string($item['image']);
+        //$image = $conn->real_escape_string($item['image']);
         $product = $conn->real_escape_string($item['product']);
         $quantity = (int)$item['quantity'];
         $price = (int)$item['price'];
         $total = $quantity * $price;
 
-        $sql = "INSERT INTO sell (image, product, quantity, price, total, date) VALUES ('$image', '$product', '$quantity', '$price', '$total' ,'$date')";
+        $sql = "INSERT INTO sell (product, quantity, price, total, date) VALUES ('$product', '$quantity', '$price', '$total' ,'$date')";
         
         if ($conn->query($sql) === TRUE) {
             echo "<script>window.location.href='add_sell.php'</script>";

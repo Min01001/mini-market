@@ -81,7 +81,7 @@
                             <th class="text-white">Quantity</th>
                             <th class="text-white">Price</th>
                             <th class="text-white">Date</th>
-                            <th class="text-white">Image</th>
+                            <!-- <th class="text-white">Image</th> -->
                         </tr>
                     </thead>
                     <tbody id="dataTable">

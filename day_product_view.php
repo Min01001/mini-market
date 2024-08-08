@@ -85,7 +85,7 @@
                     echo '<th class="text-white">Quantity</th>';
                     echo '<th class="text-white">Price</th>';
                     echo '<th class="text-white">Date</th>';
-                    echo '<th class="text-white">Image</th>';
+                    //echo '<th class="text-white">Image</th>';
                     echo '</tr>';
 
                     while ($row = $result->fetch_assoc()) {
@@ -94,7 +94,7 @@
                         echo '<td class="text-white">' . htmlspecialchars($row['total_quantity']) . '</td>';
                         echo '<td class="text-white">' . htmlspecialchars($row['total_price']) . '</td>';
                         echo '<td class="text-white">' . htmlspecialchars($row['day']) . '</td>';
-                        echo '<td><img src="' . htmlspecialchars($row['image']) . '" alt="Product Image" style="width: 50px;"></td>';
+                        //echo '<td><img src="' . htmlspecialchars($row['image']) . '" alt="Product Image" style="width: 50px;"></td>';
                         echo '</tr>';
                     }
 
