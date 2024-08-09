@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $price = (int)$item['price'];
         $total = $quantity * $price;
 
+
         $sql = "INSERT INTO sell (product, quantity, price, total, date) VALUES ('$product', '$quantity', '$price', '$total' ,'$date')";
         
         if ($conn->query($sql) === TRUE) {

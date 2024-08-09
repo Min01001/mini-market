@@ -33,7 +33,7 @@ $sql = "SELECT product, SUM(quantity) AS total_quantity, price, SUM(total) AS to
         FROM sell 
         GROUP BY product 
         ORDER BY total_quantity DESC 
-        LIMIT 3";
+        LIMIT 10";
 $result = $conn->query($sql);
 
 $data = [
@@ -95,17 +95,31 @@ $conn->close();
             data: {
                 labels: products,
                 datasets: [{
-                    label: 'Top 3 Products',
+                    label: 'Sell Quantity',
                     data: quantities,
                     backgroundColor: [
                         '#FF0000',
                         '#FFFF00',
                         '#008000',
+                        '#7F00FF',
+                        '#0000FF',
+                        '#FFFFFF',
+                        '#800080',
+                        '#800000',
+                        '#808000',
+                        '#808080',
                     ],
                     borderColor: [
                         '#FF0000',
                         '#FFFF00',
                         '#008000',
+                        '#7F00FF',
+                        '#0000FF',
+                        '#FFFFFF',
+                        '#800080',
+                        '#800000',
+                        '#808000',
+                        '#808080',
                     ],
                     borderWidth: 1
                 }]

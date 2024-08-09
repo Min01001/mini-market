@@ -60,7 +60,7 @@
                     </button>
                 <div class="day-view">
                 <div><a href="day.php"><button class="btn btn-outline-info">View Table</button></a></div>
-                    <div><a href="dayview_chat.php"><button class="btn btn-outline-info">View Chat</button></a></div>
+                    <div><a href="day_chat.php"><button class="btn btn-outline-info">View Chat</button></a></div>
                     <div><a href="day_product_view.php"><button class="btn btn-outline-info">Product</button></a></div>
                     <div><a href="day_date.php"><button class="btn btn-outline-info">Date</button></a></div>
                 </div>

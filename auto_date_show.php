@@ -16,7 +16,7 @@ if ($selectedDate) {
     $sql = "SELECT product, SUM(quantity) AS total_quantity, price, SUM(total) AS total_price, image, DATE_FORMAT(date, '%Y-%m-%d') AS day
             FROM sell 
             GROUP BY product, day
-            ORDER BY product";
+            ORDER BY id DESC, product";
 }
 
 $result = $conn->query($sql);
