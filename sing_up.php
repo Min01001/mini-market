@@ -24,15 +24,13 @@ include 'db_connect.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
-    $email = $_POST['email'];
     $password = $_POST['password'];
 
     // Hash the password
     $passwordHash = password_hash($password, PASSWORD_BCRYPT);
-
     // Prepare and execute SQL INSERT statement
-    $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
-    $stmt->bind_param("sss", $username, $email, $passwordHash);
+    $stmt = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
+    $stmt->bind_param("ss", $username, $passwordHash);
 
     if ($stmt->execute()) {
         echo "<script>window.location.href='index.php';</script>";
@@ -80,10 +78,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <input type="text" class="form-control" id="floatingText" name="username" placeholder="jhondoe" required>
                             <label for="floatingText">Username</label>
                         </div>
-                        <div class="form-floating mb-3">
+                        <!-- <div class="form-floating mb-3">
                             <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com" required>
                             <label for="floatingInput">Email address</label>
-                        </div>
+                        </div> -->
                         <div class="form-floating mb-4">
                             <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password" required>
                             <label for="floatingPassword">Password</label>
