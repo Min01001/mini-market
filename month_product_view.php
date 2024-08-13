@@ -33,10 +33,10 @@
 
             // Default SQL query (show all products)
             $selectedProduct = isset($_GET['product']) ? $_GET['product'] : '';
-            $sql = "SELECT product, SUM(quantity) AS total_quantity, price, SUM(total) AS total_price, image, DATE_FORMAT(date, '%Y-%m-%d') AS day, id 
+            $sql = "SELECT product, SUM(quantity) AS total_quantity, price, SUM(total) AS total_price, image, DATE_FORMAT(date, '%Y-%m') AS month, id 
                     FROM sell 
                     " . ($selectedProduct ? "WHERE product = '" . $conn->real_escape_string($selectedProduct) . "'" : "") . "
-                    GROUP BY day, product 
+                    GROUP BY month, product 
                     ORDER BY id DESC, product";
             $result = $conn->query($sql);
 
@@ -51,38 +51,38 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                 <div class="day-view">
-                <div><a href="day.php"><button class="btn btn-outline-info">View Table</button></a></div>
-                    <div><a href="day_chat.php"><button class="btn btn-outline-info">View Chat</button></a></div>
-                    <div><a href="day_product_view.php"><button class="btn btn-outline-info">Product</button></a></div>
-                    <div><a href="day_date.php"><button class="btn btn-outline-info">Date</button></a></div>
+                <div><a href="month.php"><button class="btn btn-outline-info">View Table</button></a></div>
+                    <div><a href="month_chat.php"><button class="btn btn-outline-info">View Chat</button></a></div>
+                    <div><a href="month_product_view.php"><button class="btn btn-outline-info">Product</button></a></div>
+                    <div><a href="month_date.php"><button class="btn btn-outline-info">Date</button></a></div>
                 </div>
             </nav>
             <main class="content px-3 py-2">
                 <div class="container-fluid">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Select
-                        </button>
-                        <ul class="dropdown-menu">
-                        <?php
-                                if ($dropdownResult->num_rows > 0) {
-                                    while ($dropdownRow = $dropdownResult->fetch_assoc()) {
-                                        $selected = ($selectedProduct === $dropdownRow['product']) ? 'active' : '';
-                                        echo '<li><a class="dropdown-item ' . $selected . '" href="?product=' . urlencode($dropdownRow['product']) . '">' . htmlspecialchars($dropdownRow['product']) . '</a></li>';
-                                    }
-                                } else {
-                                    echo '<li><a class="dropdown-item" href="#">No products available</a></li>';
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Select
+                    </button>
+                    <ul class="dropdown-menu">
+                    <?php
+                            if ($dropdownResult->num_rows > 0) {
+                                while ($dropdownRow = $dropdownResult->fetch_assoc()) {
+                                    $selected = ($selectedProduct === $dropdownRow['product']) ? 'active' : '';
+                                    echo '<li><a class="dropdown-item ' . $selected . '" href="?product=' . urlencode($dropdownRow['product']) . '">' . htmlspecialchars($dropdownRow['product']) . '</a></li>';
                                 }
-                                ?>
-                        </ul>
-                </div>               
+                            } else {
+                                echo '<li><a class="dropdown-item" href="#">No products available</a></li>';
+                            }
+                            ?>
+                    </ul>
+                </div>
                 <?php
-
+                
                 $totalQuantity =0;
                 $totalPrices =0;
-                
+
                 if ($result->num_rows > 0) {
-                    echo '<div style="overflow-x: auto; max-height: 600px;">';
+                    echo '<div style="overflow-x: auto;">';
                     echo '<table class="table table-striped">';
                     echo '<tr>';
                     echo '<th class="text-white">Product</th>';
@@ -97,9 +97,10 @@
                         echo '<td class="text-white">' . htmlspecialchars($row['product']) . '</td>';
                         echo '<td class="text-white">' . htmlspecialchars($row['total_quantity']) . '</td>';
                         echo '<td class="text-white">' . htmlspecialchars($row['total_price']) . '</td>';
-                        echo '<td class="text-danger">' . htmlspecialchars($row['day']) . '</td>';
+                        echo '<td class="text-danger">' . htmlspecialchars($row['month']) . '</td>';
                         //echo '<td><img src="' . htmlspecialchars($row['image']) . '" alt="Product Image" style="width: 50px;"></td>';
                         echo '</tr>';
+
                         $totalQuantity += $row['total_quantity'];
                         $totalPrices += $row['total_price'];
                     }
@@ -110,8 +111,6 @@
                     echo 'No products found.';
                 }
                 ?>
-
-
 
                 <div class="d-flex">
                     <h3 class="" style="color: yellow;">Quantity: <?php echo $totalQuantity; ?></h3>

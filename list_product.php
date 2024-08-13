@@ -18,7 +18,13 @@
     <div class="wrapper">
         <!-- Sidebar -->
 
-        <?php include 'sidebar.php'; ?>
+        <?php include 'sidebar.php';
+        include 'db_connect.php'; 
+
+
+
+        
+        ?>
 
         <!-- Sidebar -->
 
@@ -31,9 +37,13 @@
                 <button class="btn" type="button" data-bs-theme="dark">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
+                <?php $searchQuery = isset($_GET['search_query']) ? $conn->real_escape_string($_GET['search_query']) : ''; ?>
+
                 <form class="d-none d-md-flex ms-4">
-                    <input class="text-dark form-control bg-light border-0" type="search" placeholder="Search">
+                    <input class="text-dark form-control bg-light border-0" type="search" placeholder="Search" name="search_query" value="<?php echo htmlspecialchars($searchQuery); ?>">
                 </form>
+
                 <div style="padding-left: 15px;">
                 <a href="view_table.php"><button class="btn btn-danger">View Table</button></a>
                 </div>
@@ -42,40 +52,44 @@
                 <div class="container-fluid">
                     <h4 class="text-white">All Menus</h4>
                 <div class="row">
-                <?php include 'db_connect.php'; ?>
 
                 <?php
-include 'db_connect.php';
+    
+                    $sql = "SELECT id, product, current_price, image FROM products";
+                    if ($searchQuery !== ''){
+                        $sql .=" WHERE product LIKE '%$searchQuery%'";
+                    }
+                    $result = $conn->query($sql);
 
-$sql = "SELECT id, product, current_price, image FROM products"; // Include the 'id' field in the SELECT statement
-$result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        echo '<div class="container-fluid">';
+                        echo '<div class="row justify-content-center align-items-center">';
+                        while ($row = $result->fetch_assoc()) {
+                            echo '<div class="col-6 col-sm-4 col-md-3 col-lg-2">';
+                            echo '  <div class="card cards">';
+                            echo '    <img src="' . $row["image"] . '" class="card-img-top image-size" alt="' . htmlspecialchars($row["product"]) . '">';
+                            echo '    <div class="card-body">';
+                            echo '      <p class="card-title text-center text-dark">' . htmlspecialchars($row["product"]) . '</p>';
+                            echo '      <p class="card-text text-center text-dark">$' . htmlspecialchars($row["current_price"]) . '</p>';
+                            echo '      <a href="view.php?id=' . $row["id"] . '" class="btn btn-outline-info d-flex justify-content-center">View</a>';
+                            echo '    </div>';
+                            echo '  </div>';
+                            echo '</div>';
+                        }
+                        echo '</div>';
+                        echo '</div>';
+                    } else {
+                        echo "No products found.";
+                    }
 
-if ($result->num_rows > 0) {
-    echo '<div class="container-fluid">';
-    echo '<div class="row justify-content-center align-items-center">';
-    while ($row = $result->fetch_assoc()) {
-        echo '<div class="col-6 col-sm-4 col-md-3 col-lg-2">';
-        echo '  <div class="card cards">';
-        echo '    <img src="' . $row["image"] . '" class="card-img-top image-size" alt="' . htmlspecialchars($row["product"]) . '">';
-        echo '    <div class="card-body">';
-        echo '      <p class="card-title text-center text-dark">' . htmlspecialchars($row["product"]) . '</p>';
-        echo '      <p class="card-text text-center text-dark">$' . htmlspecialchars($row["current_price"]) . '</p>';
-        echo '      <a href="view.php?id=' . $row["id"] . '" class="btn btn-outline-info d-flex justify-content-center">View</a>';
-        echo '    </div>';
-        echo '  </div>';
-        echo '</div>';
-    }
-    echo '</div>';
-    echo '</div>';
-} else {
-    echo "No products found.";
-}
+                    $conn->close();
+                    ?>
 
-$conn->close();
-?>
-
+                <?php include 'product_js.php'; ?>
 
             </div>
+            
+
                 </div>
             </main>
         </div>

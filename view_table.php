@@ -18,7 +18,10 @@
     <div class="wrapper">
         <!-- Sidebar -->
 
-        <?php include 'sidebar.php'; ?>
+        <?php include 'sidebar.php'; 
+        include 'db_connect.php'; 
+
+        ?>
 
         <!-- Sidebar -->
 
@@ -32,63 +35,86 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <form class="d-none d-md-flex ms-4">
-                    <input class="text-white form-control bg-light border-0" type="search" placeholder="Search">
+                    <input class="text-dark form-control bg-light border-0" type="search" placeholder="Search" name="search_query" id="search_query">
                 </form>
             </nav>
             <main class="content px-3 py-2">
-                <div class="container-fluid">
-                <?php
-include 'db_connect.php';
+        <div class="container-fluid">
+            <div style="overflow-x: auto;">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="text-white">Barcode</th>
+                            <th class="text-white">Product Name</th>
+                            <th class="text-white">Item</th>
+                            <th class="text-white">Current</th>
+                            <th class="text-white">Current Price</th>
+                            <th class="text-white">Item Count</th>
+                            <th class="text-white">Date</th>
+                            <th class="text-white">Image</th>
+                            <th class="text-white">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="product_table_body">
+                        <!-- Dynamic content will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.querySelector('#search_query');
+    searchInput.addEventListener('keyup', function() {
+        fetchProducts();
+    });
 
-$sql = "SELECT * FROM products";
-$result = $conn->query($sql);
+    // Initial load
+    fetchProducts();
+});
 
-if ($result->num_rows > 0) {
-    echo '<div style="overflow-x: auto;">';
-    echo '<table class="table table-striped">';
-    echo '<tr>';
-    echo '<th class="text-white">Barcode</th>';
-    echo '<th class="text-white">Product Name</th>';
-    echo '<th class="text-white">Item</th>';
-    echo '<th class="text-white">Current</th>';
-    echo '<th class="text-white">Current Price</th>';
-    echo '<th class="text-white">Item Count</th>';
-    echo '<th class="text-white">Date</th>';
-    echo '<th class="text-white">Image</th>';
-    echo '<th class="text-white">Actions</th>';
-    echo '</tr>';
-
-    while ($row = $result->fetch_assoc()) {
-        echo '<tr class="table table-dark table-hover">';
-        echo '<td class="text-white">' . $row['barcode'] . '</td>';
-        echo '<td class="text-white">' . $row['product'] . '</td>';
-        echo '<td class="text-white">' . $row['item'] . '</td>';
-        echo '<td class="text-white">' . $row['current'] . '</td>';
-        echo '<td class="text-white">' . $row['current_price'] . '</td>';
-        echo '<td class="text-white">' . $row['item_count'] . '</td>';
-        echo '<td class="text-white">' . $row['date'] . '</td>';
-        echo '<td><img src="' . $row['image'] . '" alt="Product Image" style="width: 50px;"></td>';
-        echo '<td class="text-white text-center"><a href="edit_product.php?id=' . $row['id'] . '" class="btn btn-outline-warning">Edit</a></td>';
-        echo "<td>";
-        echo "<form method='POST' onsubmit=\"return confirm('Are you sure you want to delete?')\" action='delete_product.php'>";
-        echo "<input type='hidden' name='id' value='" . htmlspecialchars($row["id"]) . "'>";
-        echo "<button type='submit' class='btn btn-danger btn-sm'>Delete</button>";
-        echo "</form>";
-        echo "</td>";
-        echo '</tr>';
-    }
-
-    echo '</table>';
-    echo '</div>';
-} else {
-    echo 'No products found.';
+function fetchProducts() {
+    const searchQuery = document.querySelector('#search_query').value;
+    fetch('view_table_show_json.php?search_query=' + encodeURIComponent(searchQuery))
+        .then(response => response.json())
+        .then(data => displayProducts(data))
+        .catch(error => console.error('Error:', error));
 }
 
-$conn->close();
-?>
+function displayProducts(products) {
+    const tableBody = document.querySelector('#product_table_body');
+    tableBody.innerHTML = ''; // Clear the table body
 
-                </div>
-            </main>
+    if (products.length > 0) {
+        products.forEach(product => {
+            const rowHtml = `
+                <tr class="table table-dark table-hover">
+                    <td class="text-white">${product.barcode}</td>
+                    <td class="text-white">${product.product}</td>
+                    <td class="text-white">${product.item}</td>
+                    <td class="text-white">${product.current}</td>
+                    <td class="text-white">${product.current_price}</td>
+                    <td class="text-white">${product.item_count}</td>
+                    <td class="text-white">${product.date}</td>
+                    <td><img src="${product.image}" alt="Product Image" style="width: 50px;"></td>
+                    <td class="text-white text-center">
+                        <a href="edit_product.php?id=${product.id}" class="btn btn-outline-warning">Edit</a>
+                    </td>
+                    <td>
+                        <form method="POST" onsubmit="return confirm('Are you sure you want to delete?')" action="delete_product.php">
+                            <input type="hidden" name="id" value="${product.id}">
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            `;
+            tableBody.insertAdjacentHTML('beforeend', rowHtml);
+        });
+    } else {
+        tableBody.innerHTML = '<tr><td colspan="10" class="text-white">No products found.</td></tr>';
+    }
+}
+</script>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"

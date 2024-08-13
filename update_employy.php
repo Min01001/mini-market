@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($stmt->execute()) {
-        echo "<script>window.location.href='list_employy.php';</script>";
+        echo "<script>window.location.href='list_employy_card.php';</script>";
         echo "Record updated successfully";
     } else {
         echo "Something went wrong: " . $stmt->error;

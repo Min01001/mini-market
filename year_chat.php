@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="style.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <title>day view chat</title>
+    <title>month view chat</title>
     <link rel="stylesheet" href="../voncher.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -29,7 +29,7 @@
 include 'db_connect.php';
 
 // Fetch top 3 products
-$sql = "SELECT product, SUM(quantity) AS total_quantity, price, SUM(total) AS total_price, image, DATE_FORMAT(date, '%Y-%m-%d') AS day, id 
+$sql = "SELECT product, SUM(quantity) AS total_quantity, price, SUM(total) AS total_price, image, DATE_FORMAT(date, '%Y') AS year, id 
         FROM sell 
         GROUP BY product 
         ORDER BY total_quantity DESC 
@@ -63,10 +63,10 @@ $conn->close();
                     <input class="text-white form-control bg-light border-0" type="search" placeholder="Search">
                 </form> -->
                 <div class="day-view">
-                <div><a href="day.php"><button class="btn btn-outline-info">View Table</button></a></div>
-                    <div><a href="dayview_chat.php"><button class="btn btn-outline-info">View Chat</button></a></div>
-                    <div><a href="day_product_view.php"><button class="btn btn-outline-info">Product</button></a></div>
-                    <div><a href="day_date.php"><button class="btn btn-outline-info">Date</button></a></div>
+                <div><a href="year.php"><button class="btn btn-outline-info">View Table</button></a></div>
+                    <div><a href="year_chat.php"><button class="btn btn-outline-info">View Chat</button></a></div>
+                    <div><a href="year_product_view.php"><button class="btn btn-outline-info">Product</button></a></div>
+                    <div><a href="year_date.php"><button class="btn btn-outline-info">Date</button></a></div>
                 </div>
             </nav>
             <main class="content px-3 py-2">

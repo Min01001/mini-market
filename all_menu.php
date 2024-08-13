@@ -32,7 +32,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <form class="d-none d-md-flex ms-4">
-                    <input class="text-dark form-control bg-light border-0" type="search" placeholder="Search">
+                    <input class="text-white form-control bg-light border-0" type="search" placeholder="Search">
                 </form>
             </nav>
             <main class="content px-3 py-2">
@@ -90,7 +90,7 @@ $conn->close();
             echo '<div class="container-fluid">';
             echo '<div class="row justify-content-center align-items-center">';
             while($row = $result->fetch_assoc()) {
-                echo '<div class="col-lg-3 col-md-4 md-3">';
+                echo '<div class="col-md-3 md-4">';
                 echo '  <div class="card cards">';
                 echo '    <img src="' . $row["image"] . '" class="card-img-top image-size" alt="' . $row["product"] . '">';
                 echo '    <div class="card-body">';

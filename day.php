@@ -10,7 +10,7 @@
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="voncher.css">
-    <title>view product only</title>
+    <title>day view</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
@@ -19,7 +19,14 @@
     <div class="wrapper">
         <!-- Sidebar -->
 
-        <?php include 'sidebar.php'; ?>
+        <?php include 'sidebar.php';
+        include 'db_connect.php';
+
+        $sqlTotal = "SELECT SUM(total) AS total_price FROM sell";
+        $resultTotal = $conn->query($sqlTotal);
+        $totalPrice = $resultTotal->fetch_assoc();
+
+         ?>
 
         <!-- Sidebar -->
 
@@ -41,14 +48,17 @@
             </nav>
             <main class="content px-3 py-2">
                 <div class="container-fluid">
+                    <div>
+                        <h3 class="" style="color: #0add08;">Total: <?php echo number_format ($totalPrice['total_price'], 0, ',', ',') . " KS"; ?></h3>
+                    </div>
                 <?php
-include 'db_connect.php';
+
 
 $sql = "SELECT product, SUM(quantity) AS total_quantity, price ,SUM(total) AS total_price, image, DATE_FORMAT(date, '%Y-%m-%d') AS day, id FROM sell GROUP BY day, product ORDER BY id DESC, product";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    echo '<div style="overflow-x: auto;">';
+    echo '<div style="overflow-x: auto; max-height: 400px;">';
     echo '<table class="table table-striped">';
     echo '<tr>';
     echo '<th class="text-white">Product</th>';

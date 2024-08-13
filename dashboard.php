@@ -112,6 +112,7 @@
     const labels = <?php echo json_encode(array_column($salesData, 'product')); ?>;
     const data = <?php echo json_encode(array_column($salesData, 'product_sell')); ?>;
 
+
     // Pie Chart
     const pieCtx = document.getElementById('pieChart').getContext('2d');
     new Chart(pieCtx, {

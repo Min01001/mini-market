@@ -6,7 +6,7 @@
                 <!-- Sidebar Navigation -->
                 <ul class="sidebar-nav">
                     <li class="sidebar-header">
-                        <a href="" style="font-size: 15px;" class="text-primary"><img class="rounded-circle" src="img/robot.jpg" alt="" style="width: 40px; height: 40px;">   User_Name</a>                       
+                        <a href="" style="font-size: 15px;" class="text-primary"><img class="rounded-circle" src="/img/robot.jpg" alt="" style="width: 40px; height: 40px;">   User_Name</a>                       
                     </li>
                     <li class="sidebar-item">
                         <a href="dashboard.php" class="sidebar-link">
@@ -27,15 +27,15 @@
                         </a>
                         <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="new_product.php" class="sidebar-link"><i class="fa-solid fa-circle-dot"></i>New Menus</a>
+                                <a href="/new_product.php" class="sidebar-link"><i class="fa-solid fa-circle-dot"></i>New Menus</a>
                             </li>
-                            <li class="sidebar-item">
+                            <li class="/sidebar-item">
                                 <a href="list_product.php" class="sidebar-link"><i class="fa-solid fa-circle-dot"></i>List Menus</a>
                             </li>
                         </ul>
                     </li>
                     <li class="sidebar-item">
-                        <a href="add_sell.php" class="sidebar-link">
+                        <a href="/add_sell.php" class="sidebar-link">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="red" class="bi bi-grid" viewBox="0 0 16 16">
                         <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z"/>
                         </svg>
@@ -52,10 +52,10 @@
                         </a>
                         <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                            <a href="add_employy.php" class="sidebar-link"><i class="fa-solid fa-circle-dot"></i>Add Employy</a>
+                            <a href="/add_employy.php" class="sidebar-link"><i class="fa-solid fa-circle-dot"></i>Add Employy</a>
                             </li>
                             <li class="sidebar-item">
-                            <a href="list_employy.php" class="sidebar-link"><i class="fa-solid fa-circle-dot"></i>List Employy</a>
+                            <a href="/list_employy_card.php" class="sidebar-link"><i class="fa-solid fa-circle-dot"></i>List Employy</a>
                             </li>
                         </ul>
                     </li>
@@ -74,10 +74,10 @@
                                 <a href="day.php" class="sidebar-link"><i class="fas fa-dot-circle me-2"></i>ရက်ချုပ်</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="month.php" class="sidebar-link"><i class="fas fa-dot-circle me-2"></i>လချုပ်</a>
+                                <a href="/month.php" class="sidebar-link"><i class="fas fa-dot-circle me-2"></i>လချုပ်</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="year.php" class="sidebar-link"><i class="fas fa-dot-circle me-2"></i>နှစ်ချုပ်</a>
+                                <a href="/year.php" class="sidebar-link"><i class="fas fa-dot-circle me-2"></i>နှစ်ချုပ်</a>
                             </li>
                         </ul>
                     </li>
