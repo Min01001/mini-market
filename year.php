@@ -61,7 +61,7 @@ $sql = "SELECT product, SUM(quantity) AS total_quantity, price ,SUM(total) AS to
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    echo '<div style="overflow-x: auto;">';
+    echo '<div style="overflow-x: auto; max-height: 400px;">';
     echo '<table class="table table-striped">';
     echo '<tr>';
     echo '<th class="text-white">Product</th>';

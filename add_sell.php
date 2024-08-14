@@ -38,23 +38,23 @@
             <main class="content px-3 py-2">
                 <div class="container-fluid">
                 <?php
-include 'db_connect.php';
+                    include 'db_connect.php';
 
-// Fetch products for dropdown
-$dropdownSql = "SELECT DISTINCT item FROM products";
-$dropdownResult = $conn->query($dropdownSql);
+                    // Fetch products for dropdown
+                    $dropdownSql = "SELECT DISTINCT item FROM products";
+                    $dropdownResult = $conn->query($dropdownSql);
 
-// Get selected product from the dropdown
-$selectedProduct = isset($_GET['item']) ? $_GET['item'] : '';
+                    // Get selected product from the dropdown
+                    $selectedProduct = isset($_GET['item']) ? $_GET['item'] : '';
 
-// Fetch product details for the selected product
-$sql = "SELECT product, current_price, image 
-        FROM products 
-        " . ($selectedProduct ? "WHERE item = '" . $conn->real_escape_string($selectedProduct) . "'" : "");
-$result = $conn->query($sql);
+                    // Fetch product details for the selected product
+                    $sql = "SELECT product, current_price, image 
+                            FROM products 
+                            " . ($selectedProduct ? "WHERE item = '" . $conn->real_escape_string($selectedProduct) . "'" : "");
+                    $result = $conn->query($sql);
 
-$conn->close();
-?>
+                    $conn->close();
+                    ?>
                 <!-- <h6 class="text-white">Sell Order</h6> -->
                     <div class="title">
                         
@@ -75,10 +75,7 @@ $conn->close();
             ?>
         </ul>
     </div>                   
-                            <div class="px-1 py-2 ps-5">
-                                <a href="order.php"><button class="btn btn-danger"><i class="fa-regular fa-bell text-white px-2"></i>Order</button></a>
-                                <!-- <a href=""><button class="btn btn-success">Save</button></a> -->
-                            </div>
+                            
                     </div>
                     
                 <div class="row col-md-12">
@@ -91,7 +88,7 @@ if ($result->num_rows > 0) {
     echo '<div class="container-fluid">';
     echo '<div class="row justify-content-center">';
     while($row = $result->fetch_assoc()) {
-        echo '<div class="col-md-5 col-lg-3 col-sm-6 col-6">';
+        echo '<div class="col-md-5 col-lg-3 col-sm-6 col-5">';
         echo '  <div class="card cards">';
         echo '    <img src="' . $row["image"] . '" class="card-img-top image-size" alt="' . $row["product"] . '">';
         echo '    <div class="card-body">';
@@ -214,7 +211,11 @@ function updateTotalPrice() {
         totalPrice += price;
     });
 
-    document.querySelector('.total-price').innerText = `Total price : ${totalPrice} KS`;
+    // Format totalPrice with commas
+    const formattedTotalPrice = totalPrice.toLocaleString();
+
+    // Display the formatted total price
+    document.querySelector('.total-price').innerText = `Total price : ${formattedTotalPrice} KS`;
 }
 
 function saveVoucher() {
@@ -246,21 +247,28 @@ function printVoucher() {
 
         </script>
     </div>
-    <div>
-        <p class="text-white total-price">Total price : 0 KS</p>
+    <div style="padding-top: 15px; padding-bottom: 15px;">
+        <h3 class="text-white total-price">Total price : 0 KS</h3>
     </div>
     <form id="voucher-form" method="POST" action="/save_voncher.php">
         <input type="hidden" name="voucher_data" id="voucher-data">
         <div>
-            <button type="submit" class="btn btn-warning" style="width: 100%;" onclick="saveVoucher()">Order</button>
+            <button type="submit" class="btn btn-warning" style="width: 100%;" onclick="saveVoucher()"><i class="fa-solid fa-bell px-3"></i>Order</button>
+        </div>
+    </form>
+    <form id="voucher-form" method="POST" action="/payment.php">
+        <input type="hidden" name="voucher_data" id="voucher-data">
+        <div style="padding-top: 10px;">
+            <button type="submit" class="btn btn-outline-light" style="width: 100%;" onclick="payment()"><i class="fa-regular fa-money-bill-1 px-3"></i>Cash</button>
         </div>
     </form>
     <form id="voucher-form" method="POST" action="/print_voncher.php">
         <input type="hidden" name="voucher_data" id="voucher-data">
         <div style="padding-top: 10px;">
-            <button type="submit" class="btn btn-primary" style="width: 100%;" onclick="printVoucher()">Print</button>
+            <button type="submit" class="btn btn-outline-primary" style="width: 100%;" onclick="printVoucher()"><i class="fa-solid fa-print px-3"></i>Print</button>
         </div>
     </form>
+
 </div>
 
                 </div>
