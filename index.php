@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+
+
+</html><!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -22,33 +24,31 @@
 session_start();
 include 'db_connect.php';
 
-$error = ""; // Initialize $error variable
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
+    $email = $_POST['email'];
     $password = $_POST['password'];
 
     // Prepare and execute SQL SELECT statement
-    $stmt = $conn->prepare("SELECT id, username, password FROM users WHERE username = ?");
-    $stmt->bind_param("s", $username);
+    $stmt = $conn->prepare("SELECT id, username, password FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email);
     $stmt->execute();
     $stmt->store_result();
 
     if ($stmt->num_rows == 1) {
-        $stmt->bind_result($id, $db_username, $hashed_password);
+        $stmt->bind_result($id, $username, $hashed_password);
         $stmt->fetch();
 
         // Verify password
         if (password_verify($password, $hashed_password)) {
             $_SESSION['user_id'] = $id;
-            $_SESSION['username'] = $db_username;
+            $_SESSION['username'] = $username;
             header("Location: dashboard.php"); // Redirect to the dashboard or home page
             exit();
         } else {
-            $error = "Invalid username or password.";
+            $error = "Invalid email or password.";
         }
     } else {
-        $error = "Invalid username or password.";
+        $error = "Invalid email or password.";
     }
 
     $stmt->close();
@@ -95,8 +95,8 @@ $conn->close();
                     <?php endif; ?>
                     <form method="post" action="">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingInput" name="username" placeholder="Username" required>
-                            <label for="floatingInput">Username</label>
+                            <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com" required>
+                            <label for="floatingInput">Email address</label>
                         </div>
                         <div class="form-floating mb-4">
                             <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password" required>
@@ -105,12 +105,12 @@ $conn->close();
                         <div class="d-flex align-items-center justify-content-between mb-4">
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
                             </div>
                             <a href="#" class="text-white">Forgot Password?</a>
                         </div>
                         <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Login</button>
-                        <p class="text-warning mb-0">Don't have an account? <a href="sing_up.php" class="text-white">Sign Up</a></p>
+                        <p class="text-warning mb-0">Don't have an Account? <a href="sing_up.php" class="text-white">Sign Up</a></p>
                     </form>
                 </div>
             </div>

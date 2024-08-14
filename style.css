@@ -127,18 +127,22 @@ a.sidebar-link {
     }
 }
 
-.cards {
+.cards{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 10px;
-    margin-left: 10px;
-    width: auto;
+    margin-left: 15px;
+    margin: 10px;
+}
 
+.card-text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .image-size{
-    height: 160px;
+    height: 150px;
     width: cover;
 
 }
@@ -161,5 +165,13 @@ a.sidebar-link {
 .title{
     display: flex;
     justify-content: space-between;
+}
+
+.vonchers{
+    background-color: rgb(255, 252, 247);
+    height: 400px;
+    overflow-y: auto;
+    overflow-x: auto;
+    border-radius: 10px;
 }
 

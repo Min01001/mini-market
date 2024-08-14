@@ -38,23 +38,23 @@
             <main class="content px-3 py-2">
                 <div class="container-fluid">
                 <?php
-include 'db_connect.php';
+                    include 'db_connect.php';
 
-// Fetch products for dropdown
-$dropdownSql = "SELECT DISTINCT item FROM products";
-$dropdownResult = $conn->query($dropdownSql);
+                    // Fetch products for dropdown
+                    $dropdownSql = "SELECT DISTINCT item FROM products";
+                    $dropdownResult = $conn->query($dropdownSql);
 
-// Get selected product from the dropdown
-$selectedProduct = isset($_GET['item']) ? $_GET['item'] : '';
+                    // Get selected product from the dropdown
+                    $selectedProduct = isset($_GET['item']) ? $_GET['item'] : '';
 
-// Fetch product details for the selected product
-$sql = "SELECT product, current_price, image 
-        FROM products 
-        " . ($selectedProduct ? "WHERE item = '" . $conn->real_escape_string($selectedProduct) . "'" : "");
-$result = $conn->query($sql);
+                    // Fetch product details for the selected product
+                    $sql = "SELECT product, current_price, image 
+                            FROM products 
+                            " . ($selectedProduct ? "WHERE item = '" . $conn->real_escape_string($selectedProduct) . "'" : "");
+                    $result = $conn->query($sql);
 
-$conn->close();
-?>
+                    $conn->close();
+                    ?>
                 <!-- <h6 class="text-white">Sell Order</h6> -->
                     <div class="title">
                         
@@ -117,16 +117,10 @@ $conn->close();
                             </div>
                             <form id="voucher-form" method="POST" action="/save_voncher.php">
                                 <input type="hidden" name="voucher_data" id="voucher-data">
-                                <div style="padding-top: 250px;">
+                                <div style="padding-top: 300px;">
                                     <button type="submit" class="btn btn-warning" style="width: 100%;" onclick="saveVoucher()">Order</button>
                                 </div>
                             </form>
-                            <!-- <form id="voucher-form" method="POST" action="/order_voncher.php">
-                                <input type="hidden" name="voucher_data" id="voucher-data">
-                                <div style="padding-top: 10px;">
-                                    <button type="submit" class="btn btn-danger" style="width: 100%;">Order</button>
-                                </div>
-                            </form> -->
                             <form id="voucher-form" method="POST" action="/print_voncher.php">
                                 <input type="hidden" name="voucher_data" id="voucher-data">
                                 <div style="padding-top: 10px;">

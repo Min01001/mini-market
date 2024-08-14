@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <div class="card bg-secondary" style="width: 20rem;">
+    <!-- <div class="card bg-secondary" style="width: 20rem;">
     <h3 style="padding-top: 30px;" class="text-white text-center">Order Voncher</h3>
     <p class="text-white">Order Date $ Order Time</p>
     <div class="card-body voncher">
@@ -26,6 +26,23 @@
         <div>
             <p class="text-white">Total:</p>
         </div>
-    </div>
+    </div> -->
+
+    <div class="container-fluid " style="width: auto; height: 1000px; background: linear-gradient(to bottom, #00bbf6, #0047ff);">
+        <div class="row justify-content-center" style="padding-top: 100px;">
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                <div class="card cards">
+                    <img src="images/image3.png" class="card-img-top image-size" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-text">Product</h5>
+                        <div class="d-flex justify-content-center">
+                            <button class="btn btn-outline-warning me-2"><img src="images/heart.svg" alt=""></button>
+                            <button class="btn btn-outline-warning"><img src="images/cart3.svg" alt=""></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</div>
+</div>
 </body>
 </html>
