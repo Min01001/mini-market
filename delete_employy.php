@@ -15,28 +15,30 @@ if (isset($_POST['id']) && !empty($_POST['id'])) {
         $row = $result->fetch_assoc();
         $imagePath = $row['image'];
 
-        // Delete the product record
+        // Delete the employee record
         $sql = "DELETE FROM employys WHERE id=?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $id);
 
         if ($stmt->execute()) {
-            // Delete the image file from the server
-            if (file_exists($imagePath)) {
+            // Delete the image file from the server if it exists
+            if (file_exists($imagePath) && !empty($imagePath)) {
                 unlink($imagePath);
             }
-            echo "<script>window.location.href='list_employy.php';</script>";
-            echo "Record deleted successfully";
+            // Redirect to the employee list page
+            echo "<script>window.location.href='list_employy_card.php';</script>";
+            exit;
         } else {
             echo "Error deleting record: " . $stmt->error;
         }
     } else {
-        echo "Product not found.";
+        echo "Employee not found.";
     }
 
     $stmt->close();
-    $conn->close();
 } else {
-    echo "No product ID provided.";
+    echo "No employee ID provided.";
 }
+
+$conn->close();
 ?>

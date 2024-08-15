@@ -42,9 +42,14 @@
             </nav>
             <main class="content px-3 py-2">
                 <div class="container-fluid">
-                    <div class="row">
+                    <div class="row" style="padding-top: 15px">
                         <div class="col-md-5">
+
                             <?php
+
+                                $sqlTotal = "SELECT SUM(income) AS total_price FROM incomes";
+                                $resultTotal = $conn->query($sqlTotal);
+                                $totalPrice = $resultTotal->fetch_assoc();
 
                                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     if (isset($_POST['submit'])) {
@@ -105,6 +110,9 @@
                             </form>
                         </div>
                         <div class="col-md-7">
+                            <div>
+                                <h3 class="#" style="color: #0add08">Total: <?php echo number_format ($totalPrice['total_price'], 0, ',', ',') . " KS"; ?></h3>
+                            </div>
 
                         <?php 
                             $sql = "SELECT * FROM incomes";

@@ -42,9 +42,13 @@
             </nav>
             <main class="content px-3 py-2">
                 <div class="container-fluid">
-                    <div class="row">
+                    <div class="row" style="padding-top: 15px">
                         <div class="col-md-5">
                             <?php
+
+                            $sqlTotal = "SELECT SUM(outcome) AS total_price FROM outcomes";
+                            $resultTotal = $conn->query($sqlTotal);
+                            $totalPrice = $resultTotal->fetch_assoc();
 
                                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     if (isset($_POST['submit'])) {
@@ -105,6 +109,9 @@
                             </form>
                         </div>
                         <div class="col-md-7">
+                            <div>
+                                <h3 class="#" style="color: #0add08">Total: <?php echo number_format ($totalPrice['total_price'], 0, ',', ',') . " KS"; ?></h3>
+                            </div>
 
                         <?php 
                             $sql = "SELECT * FROM outcomes";
@@ -112,7 +119,7 @@
 
                             if ($result->num_rows > 0) {
                                 echo '<div style="overflow-x: auto; max-height: 400px;">'; 
-                                echo '<table class="table table-striped table-hover" style="border-radius: 10px;">'; 
+                                echo '<table class="table table-dark table-striped table-hover" style="border-radius: 10px;">'; 
                                 echo '<tr>';
                                 echo '<th class="text-white">Note</th>';
                                 echo '<th class="text-white">Outcome</th>';
@@ -143,36 +150,36 @@
                             $conn->close();
                             ?>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function() {
-    $('td[contenteditable="true"]').on('blur', function() {
-        var id = $(this).data('id');
-        var column = $(this).data('column');
-        var newValue = $(this).text();
+                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                            <script>
+                            $(document).ready(function() {
+                                $('td[contenteditable="true"]').on('blur', function() {
+                                    var id = $(this).data('id');
+                                    var column = $(this).data('column');
+                                    var newValue = $(this).text();
 
-        $.ajax({
-            url: 'update_outcome.php',  // PHP script to update the database
-            type: 'POST',
-            data: {
-                id: id,
-                column: column,
-                value: newValue
-            },
-            success: function(response) {
-                if(response === 'success') {
-                    
-                } else {
-                    alert('Failed to update data.');
-                }
-            },
-            error: function() {
-                alert('Error in AJAX request.');
-            }
-        });
-    });
-});
-</script>
+                                    $.ajax({
+                                        url: 'update_outcome.php',  // PHP script to update the database
+                                        type: 'POST',
+                                        data: {
+                                            id: id,
+                                            column: column,
+                                            value: newValue
+                                        },
+                                        success: function(response) {
+                                            if(response === 'success') {
+                                                
+                                            } else {
+                                                alert('Failed to update data.');
+                                            }
+                                        },
+                                        error: function() {
+                                            alert('Error in AJAX request.');
+                                        }
+                                    });
+                                });
+                            });
+                            </script>
 
 
 
