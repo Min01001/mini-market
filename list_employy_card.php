@@ -35,7 +35,7 @@
                 <button class="btn" type="button" data-bs-theme="dark">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <form class="d-none d-md-flex ms-4">
+                <form class="d-md-flex ms-4">
                     <input class="text-dark form-control bg-light border-0" type="search" placeholder="Search">
                 </form>
             </nav>
@@ -56,7 +56,8 @@
                             // Loop through each employee record and create a card for each
                             while ($row = $result->fetch_assoc()) {
 
-                                echo '<div class="card" style="width: 100%; max-width: 300px; height: auto; margin-bottom: 15px; margin-left: 10px;">';
+                                
+                                echo '<div class="card" style="width: 100%; max-width: 330px; height: auto; margin-bottom: 15px; margin-left: 10px;">';
                                 echo '<div class="row card-body align-items-center">';
                                 echo '  <div class="col-4">';
                                 echo '    <img src="' . htmlspecialchars($row['image']) . '" class="img-fluid" alt="' . htmlspecialchars($row['name']) . '" style="width: 50px; height: 50px; max-height: 100px; object-fit: cover;">';
@@ -66,12 +67,17 @@
                                 echo '    <p class="mb-1">' . htmlspecialchars($row['phone']) . '</p>';
                                 echo '    <div class="d-flex justify-content-between">';
                                 echo '      <a href="edit_employy.php?id=' . htmlspecialchars($row['id']) . '"><button class="btn btn-outline-warning btn-sm">Edit</button></a>';
-                                echo '      <a href="edit_employy.php?id=' . htmlspecialchars($row['id']) . '"><button class="btn btn-outline-warning btn-sm">Edit</button></a>';
-                                echo '      <a href="delete_employy.php?id=' . htmlspecialchars($row['id']) . '" onclick="return confirm(\'Are you sure you want to delete this record?\');"><button class="btn btn-outline-danger btn-sm">Delete</button></a>';
+                                echo '      <a href="view_employy.php?id=' . htmlspecialchars($row['id']) . '"><button class="btn btn-outline-info btn-sm">View</button></a>';
+                                // Form to trigger delete
+                                echo '      <form method="POST" action="delete_employy.php" style="display:inline;">';
+                                echo '          <input type="hidden" name="id" value="' . htmlspecialchars($row['id']) . '">';
+                                echo '          <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm(\'Are you sure you want to delete this record?\');">Delete</button>';
+                                echo '      </form>';
                                 echo '    </div>';
                                 echo '  </div>';
                                 echo '</div>';
                                 echo '</div>';
+                                
 
                             }
                             echo '</div>';

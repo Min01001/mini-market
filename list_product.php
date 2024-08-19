@@ -40,7 +40,7 @@
 
                 <?php $searchQuery = isset($_GET['search_query']) ? $conn->real_escape_string($_GET['search_query']) : ''; ?>
 
-                <form class="d-none d-md-flex ms-4">
+                <form class="d-md-flex ms-4">
                     <input class="text-dark form-control bg-light border-0" type="search" placeholder="Search" name="search_query" value="<?php echo htmlspecialchars($searchQuery); ?>">
                 </form>
 

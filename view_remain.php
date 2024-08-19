@@ -31,7 +31,7 @@
                 <button class="btn" type="button" data-bs-theme="dark">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <form class="d-md-flex ms-4">
+                <form class="d-none d-md-flex ms-4">
                     <input class="text-white form-control bg-light border-0" type="search" placeholder="Search">
                 </form>
             </nav>
@@ -51,6 +51,17 @@
 
                         if ($result->num_rows == 1) {
                             $row = $result->fetch_assoc();
+
+                            // Fetch the total quantity sold for this product from the 'sell' table
+                            $sql_sell = "SELECT SUM(quantity) as total_sold FROM sell WHERE product=?";
+                            $stmt_sell = $conn->prepare($sql_sell);
+                            $stmt_sell->bind_param("s", $row['product']);
+                            $stmt_sell->execute();
+                            $result_sell = $stmt_sell->get_result();
+                            $row_sell = $result_sell->fetch_assoc();
+                            
+                            $total_sold = $row_sell['total_sold'] ?? 0; // If no sales, total_sold will be 0
+                            $remain = $row['item_count'] - $total_sold;
                         } else {
                             echo "Product not found.";
                             exit();
@@ -72,10 +83,10 @@
                             <h2 class="text-white"><?php echo htmlspecialchars($row['product']); ?></h2>
                             <p class="text-white"><strong>Barcode: </strong> <?php echo htmlspecialchars($row['barcode']); ?></p>
                             <p class="text-white"><strong>Price: </strong> $<?php echo htmlspecialchars($row['current_price']); ?></p>
-
                             <p class="text-white"><strong>Item: </strong> <?php echo htmlspecialchars($row['item']); ?></p>
                             <p class="text-white"><strong>Current: </strong> <?php echo htmlspecialchars($row['current']); ?></p>
                             <p class="text-white"><strong>Item Count: </strong> <?php echo htmlspecialchars($row['item_count']); ?></p>
+                            <p class="text-white"><strong>Remain: </strong> <?php echo htmlspecialchars($remain); ?></p>
                             <p class="text-white"><strong>Date: </strong> <?php echo htmlspecialchars($row['date']); ?></p>
                         </div>
                     </div>

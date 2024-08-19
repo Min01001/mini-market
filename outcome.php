@@ -36,7 +36,7 @@
                 <button class="btn" type="button" data-bs-theme="dark">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <form class="d-none d-md-flex ms-4">
+                <form class="d-md-flex ms-4">
                     <input class="text-dark form-control bg-light border-0" type="search" placeholder="Search">
                 </form>
             </nav>
