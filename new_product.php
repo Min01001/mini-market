@@ -131,11 +131,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                 </select>
             </div>
             <div class="col-md-6">
-                <label for="current" class="form-label text-white">Current</label>
+                <label for="current" class="form-label text-white">Cost Price</label>
                 <input type="text" class="form-control bg-white text-dark" id="current" name="current">
             </div>
             <div class="col-md-6">
-                <label for="current_price" class="form-label text-white">Current Price</label>
+                <label for="current_price" class="form-label text-white">Selling Price</label>
                 <input type="text" class="form-control bg-white text-dark" id="current_price"
                     name="current_price">
             </div>
