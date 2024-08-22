@@ -109,10 +109,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                 <h3>New Menu Add</h3><br>
                 <form class="row g-3" method="POST" enctype="multipart/form-data" onsubmit="return confirm('Are you sure you want to submit?')" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
                 <div class="col-md-6">
-                <label for="barcode" class="form-label text-white">Barcode</label>
-                <input type="text" class="form-control bg-white text-dark" id="barcode" name="barcode">
+                <!-- <label for="barcode" class="form-label text-white">Barcode</label> -->
+                <input type="hidden" class="form-control bg-white text-dark" id="barcode" name="barcode">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <label for="product" class="form-label text-white">Product Name</label>
                 <input type="text" class="form-control bg-white text-dark" id="product" name="product">
             </div>
@@ -139,7 +139,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                 <input type="text" class="form-control bg-white text-dark" id="current_price"
                     name="current_price">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <label for="item_count" class="form-label text-white">Item Count</label>
                 <input type="text" class="form-control bg-white text-dark" id="item_count" name="item_count" value="1">
             </div>
@@ -156,7 +156,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                 document.getElementById("date").value = todayStr;
             });
             </script>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <label for="image" class="form-label text-white">Image</label>
                 <input type="file" class="form-control text-dark" id="image" name="image">
             </div>

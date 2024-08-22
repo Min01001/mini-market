@@ -247,7 +247,7 @@ if ($result->num_rows > 0) {
                 <button type="submit" class="btn btn-warning" style="width: 100%;" onclick="saveVoucher()"><i class="fa-solid fa-bell px-3"></i>Order</button>
             </div>
         </form>
-        <form id="voucher-form" method="POST" action="/kitchen.php">
+        <!-- <form id="voucher-form" method="POST" action="/kitchen.php">
             <input type="hidden" name="voucher_data" id="voucher-data">
             <div style="padding-top: 10px;">
                 <button type="submit" class="btn btn-danger" style="width: 100%;" onclick="payment()">Kitchen Order</button>
@@ -264,7 +264,7 @@ if ($result->num_rows > 0) {
             <button type="button" class="btn btn-outline-primary" style="width: 100%;" onclick="printVoucher()">
                 <i class="fa-solid fa-print px-3"></i>Print
             </button>
-        </form>
+        </form> -->
 
 
         <!-- Print Voucher Modal -->
